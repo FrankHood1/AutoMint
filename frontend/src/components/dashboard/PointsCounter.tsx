@@ -36,6 +36,7 @@ function useAnimatedNumber(target: number, duration = 0.8) {
     const from = prev.current;
     prev.current = target;
     let start: number | null = null;
+    let rafId: number;
 
     const step = (timestamp: number) => {
       if (start === null) start = timestamp;
@@ -43,10 +44,11 @@ function useAnimatedNumber(target: number, duration = 0.8) {
       const t = Math.min(elapsed, 1);
       const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // ease-in-out quad
       setDisplayed(Math.round(from + (target - from) * eased));
-      if (t < 1) requestAnimationFrame(step);
+      if (t < 1) rafId = requestAnimationFrame(step);
     };
 
-    requestAnimationFrame(step);
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
   }, [target, duration]);
 
   return displayed;

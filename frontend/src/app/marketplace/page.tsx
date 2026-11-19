@@ -289,7 +289,7 @@ export default function MarketplacePage() {
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-8">
+    <div className="mx-auto max-w-7xl px-6 py-8">
       {/* Page header */}
       <div className="mb-8 flex flex-wrap items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15">
@@ -471,6 +471,6 @@ export default function MarketplacePage() {
       {listedBot && (
         <ListBotModal bot={listedBot} isOpen onClose={() => setListedBot(null)} />
       )}
-    </main>
+    </div>
   );
 }

@@ -292,6 +292,8 @@ pub enum MarketplaceError {
     InvalidAmount = 32,
     /// `withdraw_fees` amount exceeds the accrued fee balance (#426).
     InsufficientFees = 33,
+    /// `set_bot_nft` was called while the bot still has active listings (#1393).
+    ActiveListingsExist = 34,
 }
 
 /// Every bot tier, in order, for per-tier reporting.
